@@ -50,10 +50,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         holder.populationView.setText("Population: " + country.getPopulation());
 
         int imageResId = context.getResources().getIdentifier(
-                country.getFlagName(),
-                "mipmap",
-                context.getPackageName()
+                country.getFlagName(), "drawable", context.getPackageName()
         );
+
         holder.flagImageView.setImageResource(imageResId);
     }
 
