@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,23 +38,30 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
 
     @NonNull
     @Override
-    public CountryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
+    public CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_row, parent, false);
         return new CountryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CountryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {
         Country country = countryList.get(position);
 
         holder.countryNameView.setText(country.getCountryName());
         holder.populationView.setText("Population: " + country.getPopulation());
 
         int imageResId = context.getResources().getIdentifier(
-                country.getFlagName(), "drawable", context.getPackageName()
+                country.getFlagName(),
+                "drawable",
+                context.getPackageName()
         );
-
         holder.flagImageView.setImageResource(imageResId);
+
+        holder.itemView.setOnClickListener(v -> {
+            String message = "Selected: " + country.getCountryName();
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
