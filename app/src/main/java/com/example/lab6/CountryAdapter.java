@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +58,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         holder.flagImageView.setImageResource(imageResId);
 
         holder.itemView.setOnClickListener(v -> {
-            String message = "Selected: " + country.getCountryName();
+            String message = "Selected: " + country.getCountryName() + " (" + "population: " + country.getPopulation() + ")";
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         });
     }
